@@ -1,12 +1,12 @@
 # https://6xcxxgtuo4wqfsbqxai4bn.streamlit.app/
 
-import streamlit as st
-import requests
 import pickle
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-import sklearn
 
+import numpy as np
+import requests
+import sklearn
+import streamlit as st
+from sklearn.preprocessing import StandardScaler
 
 with open('modelo_classificacao_casas.pickle', 'rb') as file:
     model_classificacao = pickle.load(file)
@@ -31,16 +31,14 @@ with tab1:
             "sqft_above": sqft_above
         }
         
-        try:
-            response = requests.post("http://127.0.0.1:5000/predict", json=payload)
-            if response.status_code == 200:
-                result = response.json()
-                predicted_price = result.get("predicted_price", "N/A")
-                st.write(f"O preço previsto da casa é: ${predicted_price}")
-            else:
-                st.error("Erro na predição. Verifique os valores inseridos.")
-        except requests.exceptions.RequestException as e:
-            st.error("Não foi possível conectar à API para previsão de preço.")
+        
+        response = requests.post("http://0.0.0.0:5000/predict", json=payload)
+        if response.status_code == 200:
+            result = response.json()
+            predicted_price = result.get("predicted_price", "N/A")
+            st.write(f"O preço previsto da casa é: ${predicted_price:,.2f}")
+        else:
+            st.error("Erro na predição. Verifique os valores inseridos.")
 
 with tab2:
     st.header("Classificação de Casas por Grupos")
