@@ -2,6 +2,9 @@ import streamlit as st
 import requests
 import pickle
 import numpy as np
+from sklearn.preprocessing import StandardScaler
+import sklearn
+
 
 with open('modelo_classificacao_casas.pickle', 'rb') as file:
     model_classificacao = pickle.load(file)
