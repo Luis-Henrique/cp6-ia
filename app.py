@@ -11,7 +11,7 @@ with open('modelo_classificacao_casas.pickle', 'rb') as file:
 
 st.title("Aplicação de Classificação e Predição de Casas")
 
-tab1, tab2 = st.tabs(["Classificação", "Previsão de Preço"])
+tab1, tab2 = st.tabs(["Previsão de Preço", "Classificação"])
 
 with tab1:
     st.header("Predição de Preço de Casas (via API Flask)")
