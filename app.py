@@ -1,6 +1,8 @@
 import streamlit as st
 import pickle
 import numpy as np
+import sklearn
+from sklearn.preprocessing import StandardScaler
 
 with open('modelo_classificacao_casas.pickle', 'rb') as file:
     model = pickle.load(file)
